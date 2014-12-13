@@ -13,20 +13,21 @@
     NSMutableArray* bubbleButtons;
 }
 
-- (id)initCenteredInWindowWithRadius:(int)radiusValue menuItems:(NSArray *)menuItems
+- (id)initCenteredInWindowWithRadius:(int)radiusValue menuItems:(NSArray *)items
 {
     UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
 
-    return [self initWithPoint:CGPointMake((CGFloat) (window.frame.size.width * 0.5), (CGFloat) (window.frame.size.height * 0.5)) radius:radiusValue menuItems:menuItems inView:window];
+    return [self initWithPoint:CGPointMake((CGFloat) (window.frame.size.width * 0.5), (CGFloat) (window.frame.size.height * 0.5)) radius:radiusValue menuItems:items inView:window];
 }
 
-- (id)initWithPoint:(CGPoint)point radius:(int)radiusValue menuItems:(NSArray *)menuItems inView:(UIView *)view
+- (id)initWithPoint:(CGPoint)point radius:(int)radiusValue menuItems:(NSArray *)items inView:(UIView *)view
 {
     self = [super initWithFrame:CGRectMake(point.x - radiusValue, point.y - radiusValue, 2 * radiusValue, 2 * radiusValue)];
 
     if (self) {
-        _menuItemImages = menuItems;
+        _menuItems = items;
         _menuRadius = radiusValue;
+        _customButtons = NO;
         _bubbleRadius = 40;
         _bubbleAlpha = 0.97f;
         _bubbleShowDelayTime = 0.15f;
@@ -77,15 +78,19 @@
         }
 
         //If there are no menu items, dont continue
-        if([_menuItemImages count] == 0) return;
+        if([_menuItems count] == 0) return;
 
-        bubbleButtons = [[NSMutableArray alloc] init];
-        //Create bubble buttons from each menu item image
-        for (int i = 0; i < _menuItemImages.count; i++)
-        {
-            UIButton* button = [self createButtonWithImage:_menuItemImages[i]];
-            [self addSubview:button];
-            [bubbleButtons addObject:button];
+        if (_customButtons) {
+            bubbleButtons = _menuItems;
+        } else {
+            bubbleButtons = [[NSMutableArray alloc] init];
+            //Create bubble buttons from each menu item image
+            for (int i = 0; i < _menuItems.count; i++)
+            {
+                UIButton* button = [self createButtonWithImage:_menuItems[i]];
+                [self addSubview:button];
+                [bubbleButtons addObject:button];
+            }
         }
 
 
@@ -99,9 +104,9 @@
         // actually, if _bubbleTotalAngle % 360, make them fit within, else edge them
         float bubbleSpacingAngle;
         if (((int)_bubbleTotalAngle % 360) == 0) {
-            bubbleSpacingAngle = _bubbleTotalAngle / ((float)[_menuItemImages count]);
+            bubbleSpacingAngle = _bubbleTotalAngle / ((float)[_menuItems count]);
         } else {
-            bubbleSpacingAngle = _bubbleTotalAngle / ((float)[_menuItemImages count] - 1);
+            bubbleSpacingAngle = _bubbleTotalAngle / ((float)[_menuItems count] - 1);
         }
 
         // @TODO(Shrugs) note: this is independent of direction

@@ -18,7 +18,7 @@
 
 
 //General
-@property (nonatomic, assign) NSArray *menuItemImages; //The menu items images
+@property (nonatomic, assign) NSArray *menuItems; //The menu items (images or buttons)
 @property (nonatomic, assign) int menuRadius; // Radius from center of menu to each menu item
 @property (nonatomic, assign) BOOL isAnimating; // Flag to track if the menu items are currently animating
 @property (nonatomic, weak) UIView *parentView; // The parent view this view was added to
@@ -35,7 +35,8 @@
 @property (nonatomic, assign) float bubblePopOutDuration; // The amount of seconds it takes for a bubble to reach its hide position  (default is 1.0f)
 @property (nonatomic, assign) float bubbleStartAngle; // Initial angle to start bubbles (default is 0.0f)
 @property (nonatomic, assign) float bubbleTotalAngle; // Total available degrees in the bubble menu (default is 360)
-@property (nonatomic, assign) BOOL easyButtons; // simple or complex button styling (set NO if buttons have alpha channel) (default is YES);
+@property (nonatomic, assign) BOOL easyButtons; // simple or complex button styling (set NO if buttons have alpha channel) (default is YES)
+@property (nonatomic, assign) BOOL customButtons; // pass array of UIButtons instead of images (default is NO)
 
 // Background
 @property (nonatomic) UIView *backgroundView;
@@ -45,9 +46,9 @@
 @property int backgroundFadeDuration; // The amount of seconds it takes for the background to fade in/out (1.2 by default
 
 
--(id)initWithPoint:(CGPoint)point radius:(int)radiusValue menuItems:(NSArray*)menuItems inView:(UIView *)view; //Initialize the component at a certain point with a certain radius
+-(id)initWithPoint:(CGPoint)point radius:(int)radiusValue menuItems:(NSArray*)items inView:(UIView *)view; //Initialize the component at a certain point with a certain radius
 
--(id)initCenteredInWindowWithRadius:(int)radiusValue menuItems:(NSArray*)menuItems; // Initialize the component in a UIWindow instance
+-(id)initCenteredInWindowWithRadius:(int)radiusValue menuItems:(NSArray*)items; // Initialize the component in a UIWindow instance
 
 -(void)show; // Show the menu
 -(void)hide; // Hide the menu
