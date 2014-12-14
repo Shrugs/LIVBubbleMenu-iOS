@@ -88,9 +88,12 @@
             for (int i = 0; i < _menuItems.count; i++)
             {
                 UIButton* button = [self createButtonWithImage:_menuItems[i]];
-                [self addSubview:button];
                 [bubbleButtons addObject:button];
             }
+        }
+
+        for (UIButton *btn in bubbleButtons) {
+            [self addSubview:btn];
         }
 
 
