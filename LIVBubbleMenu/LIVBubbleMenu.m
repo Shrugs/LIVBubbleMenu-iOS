@@ -183,7 +183,7 @@
 
     POPBasicAnimation *bubbleFadeInAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
     bubbleFadeInAnimation.toValue = @(1.0);
-    bubbleFadeInAnimation.duration = 0.45f;
+    bubbleFadeInAnimation.duration = 0.2f;
     bubbleFadeInAnimation.beginTime = CACurrentMediaTime() + delay;
 
     //Set the completion blocks
@@ -197,6 +197,7 @@
     //Add the animations (start them)
     [bubble pop_addAnimation:scaleInAnimation forKey:@"scaleIn"];
     [bubble pop_addAnimation:positionInAnimation forKey:@"position"];
+    [bubble pop_addAnimation:bubbleFadeInAnimation forKey:@"fadeIn"];
 }
 
 
