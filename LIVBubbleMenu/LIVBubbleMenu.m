@@ -93,7 +93,7 @@
         }
 
         for (UIButton *btn in bubbleButtons) {
-            [button addTarget:self action:@selector(buttonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
+            [btn addTarget:self action:@selector(buttonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:btn];
         }
 
