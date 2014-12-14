@@ -81,7 +81,7 @@
         if([_menuItems count] == 0) return;
 
         if (_customButtons) {
-            bubbleButtons = _menuItems;
+            bubbleButtons = [NSMutableArray arrayWithArray:_menuItems];
         } else {
             bubbleButtons = [[NSMutableArray alloc] init];
             //Create bubble buttons from each menu item image
