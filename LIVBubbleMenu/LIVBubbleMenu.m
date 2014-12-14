@@ -93,6 +93,7 @@
         }
 
         for (UIButton *btn in bubbleButtons) {
+            [button addTarget:self action:@selector(buttonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:btn];
         }
 
@@ -294,7 +295,6 @@
 {
     //Create a new button with the specified image
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button addTarget:self action:@selector(buttonWasTapped:) forControlEvents:UIControlEventTouchUpInside];
     button.frame = CGRectMake(0, 0, 2 * _bubbleRadius, 2 * _bubbleRadius);
 
     if (_easyButtons) {
