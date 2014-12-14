@@ -181,6 +181,11 @@
     positionInAnimation.duration = _bubblePopInDuration;
     positionInAnimation.beginTime = CACurrentMediaTime() + delay;
 
+    POPBasicAnimation *bubbleFadeInAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    bubbleFadeInAnimation.toValue = @(1.0);
+    bubbleFadeInAnimation.duration = 0.45f;
+    bubbleFadeInAnimation.beginTime = CACurrentMediaTime() + delay;
+
     //Set the completion blocks
     positionInAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
         //Check if its the last button to animate
