@@ -69,10 +69,9 @@
             [_parentView insertSubview:_backgroundView belowSubview:self];
 
             // Animate the background in
-            POPBasicAnimation *fadeInAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
-            fadeInAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            POPSpringAnimation *fadeInAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewAlpha];
             fadeInAnimation.toValue = @(_backgroundAlpha);
-            fadeInAnimation.duration = _backgroundFadeDuration;
+//            fadeInAnimation.duration = _backgroundFadeDuration;
             [_backgroundView pop_addAnimation:fadeInAnimation forKey:@"fadeIn"];
 
         }
@@ -221,9 +220,10 @@
     bubbleFadeOutAnimation.duration = 0.45f;
     bubbleFadeOutAnimation.beginTime = CACurrentMediaTime() + delay;
 
-    POPBasicAnimation *backgroundFadeOutAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    POPSpringAnimation *backgroundFadeOutAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewAlpha];
     backgroundFadeOutAnimation.toValue = @(0.0);
-    backgroundFadeOutAnimation.duration = _backgroundFadeDuration;
+    backgroundFadeOutAnimation.velocity = @(-8);
+//    backgroundFadeOutAnimation.duration = _backgroundFadeDuration;
 
 
 
