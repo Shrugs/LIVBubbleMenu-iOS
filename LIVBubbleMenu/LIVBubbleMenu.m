@@ -60,7 +60,10 @@
         if (_hasBackground) {
 
             // Create background
-            _backgroundView = [[UIView alloc] initWithFrame:_parentView.bounds];
+            _backgroundView = [[UIView alloc] initWithFrame:CGRectMake(_parentView.bounds.origin.x,
+                                                                       _parentView.bounds.origin.y,
+                                                                       MAX([[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width),
+                                                                       _parentView.bounds.size.height)];
             _backgroundView.backgroundColor = _backgroundColor;
             _backgroundView.alpha = 0;
 
