@@ -294,7 +294,7 @@
     [self hide];
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     // hides self if user touches anywhere but the buttons within the self UIView
     [self hide];
